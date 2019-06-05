@@ -49,7 +49,6 @@ class Server(threading.Thread):
 
             return request_content
 
-
         return Server(text_response_handler, **kwargs)
 
     @classmethod
@@ -71,7 +70,7 @@ class Server(threading.Thread):
             if self.wait_to_close_event:
                 self.wait_to_close_event.wait(self.WAIT_EVENT_TIMEOUT)
         finally:
-            self.ready_event.set() # just in case of exception
+            self.ready_event.set()  # just in case of exception
             self._close_server_sock_ignore_errors()
             self.stop_event.set()
 
@@ -124,4 +123,4 @@ class Server(threading.Thread):
         # ensure server thread doesn't get stuck waiting for connections
         self._close_server_sock_ignore_errors()
         self.join()
-        return False # allow exceptions to propagate
+        return False  # allow exceptions to propagate
